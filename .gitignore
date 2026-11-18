@@ -1,0 +1,77 @@
+# ============================================================
+#  Android / Gradle
+# ============================================================
+*.iml
+.gradle/
+.kotlin/
+build/
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# IDE
+.idea/caches
+.idea/libraries
+.idea/modules.xml
+.idea/workspace.xml
+.idea/navEditor.xml
+.idea/assetWizardSettings.xml
+.DS_Store
+
+# ============================================================
+#  ★ 第三方二进制 —— 绝对不能发布
+# ============================================================
+# 官方 / 系统应用的 APK（体积大，且是第三方版权内容）
+*.apk
+*.xapk
+*.aab
+
+# 从系统提取 / 反编译出来的产物（同样是第三方代码）
+*.dex
+*.odex
+*.vdex
+*.oat
+*.art
+
+# Oracle 等厂商 jar 也不要进仓库
+# （本项目的 api-82.jar 为 LSPosed API，允许但见下方说明）
+
+# ============================================================
+#  逆向分析产物（本地工作用，体积巨大且含第三方代码）
+# ============================================================
+tools/jadx/
+tools/jadx-*/
+tools/report/
+tools/btsnoop/
+tools/jadx.zip
+tools/*.zip
+tools/*.log
+
+# ============================================================
+#  其它
+# ============================================================
+*.log
+hs_err_pid*.log
+replay_pid*.log
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+
+# 本地私密文件
+*.keystore
+*.jks
+signing.properties
+key.properties
+# 构建产物
+*/release/
+release/
+app/debug/
+*/debug/
+
+# 本地临时分析产物（不属于项目）
+.local-artifacts/
+
+# IDE 个人配置（不发布）
+.idea/

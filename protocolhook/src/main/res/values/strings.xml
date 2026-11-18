@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">绿联耳机增强</string>
+
+    <string-array name="xposed_scope">
+        <!-- 协议桥：抓官方"声学"APP 与耳机的蓝牙字节 -->
+        <item>com.ugreen.iot</item>
+        <!-- 系统桥：把电量喂给 ColorOS（三方耳机电量通道在这个进程里） -->
+        <item>com.android.bluetooth</item>
+        <!--
+            降噪桥：「无线耳机」App。
+            它是系统音量面板降噪卡片的数据源（ContentProvider），
+            在这里注入伪造数据，系统原生降噪 UI 就会出现。
+        -->
+        <item>com.oplus.melody</item>
+        <!--
+            设备空间桥：「设备空间」App（com.heytap.mydevices）。
+            用户点开蓝牙里的 T6 看到的详情页就是它。
+            我们接管页面里自带的"蓝牙音频设置"条目作为控制入口。
+        -->
+        <item>com.heytap.mydevices</item>
+        <!--
+            设备快连桥：「设备快连」App（com.heytap.accessory）。
+            它负责开盖时的连接弹窗；真机日志显示它已在扫描 T6。
+        -->
+        <item>com.heytap.accessory</item>
+    </string-array>
+</resources>

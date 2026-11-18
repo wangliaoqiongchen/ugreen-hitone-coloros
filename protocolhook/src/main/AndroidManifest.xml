@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--
+        仅用于把日志写到 /sdcard/Download，方便用户直接取回。
+        在 Android 10 及以下生效；Android 11+ 为 no-op。
+        注意：被 Hook 的官方 APP 自己并没有这个权限，
+        所以它在 /sdcard/Download 上的写入可能失败，
+        此时会自动回退到 APP 专属外部目录或私有目录。
+    -->
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="29" />
+
+    <!--
+        开机自启：解除"新装/刚更新应用"的 stopped 状态。
+
+        背景：用户实测每次重启后要手动打开一次本 APP 才生效。
+        原因见 BootReceiver 的注释 —— 与 Hook 无关，
+        而是 Android 对刚更新过的应用的冻结策略。
+    -->
+    <uses-permission
+        android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+
+    <application
+        android:allowBackup="false"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.UGREENProtocolHook">
+
+        <!-- ================= Xposed / LSPosed 模块声明 ================= -->
+
+        <!-- 让 LSPosed 识别这是一个 Xposed 模块 -->
+        <meta-data
+            android:name="xposedmodule"
+            android:value="true" />
+
+        <!-- 模块说明（显示在 LSPosed 列表里） -->
+        <meta-data
+            android:name="xposeddescription"
+            android:value="让 UGREEN HiTune T6 接入 ColorOS：在系统音量面板与「设备空间」里可直接切换降噪，无需打开任何第三方 APP" />
+
+        <!-- 最低兼容的 Xposed API 版本 -->
+        <meta-data
+            android:name="xposedminversion"
+            android:value="82" />
+
+        <!-- 建议作用域：让 LSPosed 默认只列出这一个目标 -->
+        <meta-data
+            android:name="xposedscope"
+            android:resource="@array/xposed_scope" />
+
+        <!-- ============================================================ -->
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- 开机自启，解除 stopped 状态（详见 BootReceiver 注释） -->
+        <receiver
+            android:name=".BootReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+</manifest>

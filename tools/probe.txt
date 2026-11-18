@@ -1,0 +1,10 @@
+adb : 1+0 records in
+???? ?:4 ??: 1
++ adb shell "su -c 'dd if=/data/misc/bluetooth/logs/bluetooth_20261003_ ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (1+0 records in:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+1+0 records out
+16 bytes (16 B) copied, 0.001 s, 16 K/s
+Current process 

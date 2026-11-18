@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    自适应图标前景：入耳式耳塞（与 LSPosed 模块同一套造型）。
+
+    （原文件是 Android Studio 默认模板的安卓机器人，已移除）
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- ① 耳塞主体（腔体 + 短柄） -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M54,28
+                      C65,28 74,37 74,48
+                      C74,57 68,64 61,67
+                      L61,78
+                      C61,82 58,84 55,84
+                      C52,84 49,82 49,78
+                      L49,67
+                      C42,64 34,57 34,48
+                      C34,37 43,28 54,28
+                      Z" />
+
+    <!-- ② 发声单元（内圈，深绿） -->
+    <path
+        android:fillColor="#FF0E8F6E"
+        android:pathData="M54,44m-11,0a11,11 0 1,0 22,0a11,11 0 1,0 -22,0Z" />
+
+    <!-- ③ 高光（浅绿，让内圈有层次） -->
+    <path
+        android:fillColor="#FF7FE9C7"
+        android:pathData="M54,44m-5,0a5,5 0 1,0 10,0a5,5 0 1,0 -10,0Z" />
+
+</vector>
